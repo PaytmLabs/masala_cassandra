@@ -24,7 +24,7 @@ primary_ip = primary_addrs_ipv4.keys.first
 if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil?
   node.set['datadog']['cassandra']['instances'] = [
       {
-          host: '127.0.0.1',
+          host: primary_ip,
           port: node['cassandra']['jmx_port'],
           name: node['cassandra']['cluster_name']
       }

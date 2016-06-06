@@ -14,6 +14,7 @@ default['cassandra']['gc_survivor_ratio'] = 8
 default['cassandra']['gc_max_tenuring_threshold'] = 1
 default['cassandra']['gc_cms_initiating_occupancy_fraction'] = 75
 
+default['cassandra']['local_jmx'] = false
 
 # direct conf file items
 default['cassandra']['config']['disk_failure_policy'] = 'stop_paranoid' # options: stop,best_effort,ignore
