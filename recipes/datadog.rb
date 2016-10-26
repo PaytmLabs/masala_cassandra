@@ -29,6 +29,7 @@ if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].ni
           name: node['cassandra']['cluster_name']
       }
   ]
+  node.set['datadog']['cassandra']['version'] = (node['cassandra']['version'].to_f >= 2.2) ? 2 : 1
   include_recipe 'datadog::cassandra'
 end
 
