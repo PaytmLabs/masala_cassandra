@@ -18,7 +18,7 @@
 
 cron "logrotate_cassandra_repair" do
   minute "0"
-  hour "4"
+  hour node['masala_cassandra']['repair_cron_hour']
   # Upstream recipe doesn't set installation_dir correctly, hardcode it
   #command "#{node.cassandra.installation_dir}/bin/nodetool repair 2>1 > #{node.cassandra.log_dir}/repair.log"
   command "/usr/bin/nodetool repair 2>1 > #{node.cassandra.log_dir}/repair.log"

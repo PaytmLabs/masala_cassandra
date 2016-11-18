@@ -1,4 +1,7 @@
 
+# Hour in UTC that the repair cron will rul
+default['masala_cassandra']['repair_cron_hour'] = 20
+
 # Chef recipe vars, not cassandra itself here, see below for C* yaml
 default['cassandra']['install_method'] = 'datastax'
 default['cassandra']['install_java'] = false
