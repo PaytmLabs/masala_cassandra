@@ -34,16 +34,17 @@ if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].ni
 end
 
 # register process monitor
-ruby_block "datadog-process-monitor-cassandra" do
-  block do
-    node.set['masala_base']['dd_proc_mon']['cassandra'] = {
-      search_string: ['org.apache.cassandra.service.CassandraDaemon'],
-      exact_match: false,
-      thresholds: {
-       critical: [1, 1]
+if node['masala_base']['dd_enable'] && !node['masala_base']['dd_api_key'].nil?
+  ruby_block "datadog-process-monitor-cassandra" do
+    block do
+      node.set['masala_base']['dd_proc_mon']['cassandra'] = {
+        search_string: ['org.apache.cassandra.service.CassandraDaemon'],
+        exact_match: false,
+        thresholds: {
+         critical: [1, 1]
+        }
       }
-    }
+    end
+    notifies :run, 'ruby_block[datadog-process-monitors-render]'
   end
-  only_if { node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil? }
-  notifies :run, 'ruby_block[datadog-process-monitors-render]'
 end

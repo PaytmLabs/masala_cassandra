@@ -2,6 +2,16 @@
 # Hour in UTC that the repair cron will rul
 default['masala_cassandra']['repair_cron_hour'] = 20
 
+# Activating this requires one of the following one-time post-setup steps, followed by a "nodetool repair system_auth"
+#  ALTER KEYSPACE "system_auth" WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
+#  ALTER KEYSPACE "system_auth" WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'dc1' : 3, 'dc2' : 2};
+default['masala_cassandra']['enable_auth'] = false
+
+if node['masala_cassandra']['enable_auth']
+  default['cassandra']['config']['authenticator'] = 'org.apache.cassandra.auth.PasswordAuthenticator'
+  default['cassandra']['config']['authorizer'] = 'org.apache.cassandra.auth.CassandraAuthorizer'
+end
+
 # Chef recipe vars, not cassandra itself here, see below for C* yaml
 default['cassandra']['install_method'] = 'datastax'
 default['cassandra']['install_java'] = false
