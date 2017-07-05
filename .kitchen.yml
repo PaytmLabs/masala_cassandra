@@ -28,7 +28,7 @@ platforms:
       box: boxcutter/centos72
     attributes:
       system:
-        primary_interface: enp0s8
+        primary_interface: eth1
   - name: ubuntu1404
     driver_config:
       box: boxcutter/ubuntu1404
@@ -68,9 +68,9 @@ suites:
           10.10.10.12: cassandra2.kitchen.masalatest.com
           10.10.10.13: cassandra3.kitchen.masalatest.com
       cassandra:
-        version: "3.0.1"
+        version: "3.0.9"
         package_name: "dsc30"
-        data_dir: ["/cassandra/data"]
+        data_dir: ["/cassandra/data1"]
         config:
           cluster_name: "kitchen_test"
           saved_caches_directory: "/cassandra/saved_caches"
@@ -96,9 +96,9 @@ suites:
           10.10.10.12: cassandra2.kitchen.masalatest.com
           10.10.10.13: cassandra3.kitchen.masalatest.com
       cassandra:
-        version: "3.0.1"
+        version: "3.0.9"
         package_name: "dsc30"
-        data_dir: ["/cassandra/data"]
+        data_dir: ["/cassandra/data1"]
         config:
           cluster_name: "kitchen_test"
           saved_caches_directory: "/cassandra/saved_caches"
@@ -123,9 +123,9 @@ suites:
           10.10.10.12: cassandra2.kitchen.masalatest.com
           10.10.10.13: cassandra3.kitchen.masalatest.com
       cassandra:
-        version: "3.0.1"
+        version: "3.0.9"
         package_name: "dsc30"
-        data_dir: ["/cassandra/data"]
+        data_dir: ["/cassandra/data1"]
         config:
           cluster_name: "kitchen_test"
           saved_caches_directory: "/cassandra/saved_caches"

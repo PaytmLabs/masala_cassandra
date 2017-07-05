@@ -25,19 +25,19 @@ primary_addrs = primary_if['addresses']
 primary_addrs_ipv4 = primary_addrs.select { |_addr, attrs| attrs['family'] == 'inet' }
 primary_ip = primary_addrs_ipv4.keys.first
 
-node.set['cassandra']['config']['listen_address'] = primary_ip
-node.set['cassandra']['config']['broadcast_address'] = primary_ip
-node.set['cassandra']['config']['broadcast_rpc_address'] = primary_ip
-node.set['cassandra']['config']['rpc_address'] = "0.0.0.0"
+node.default['cassandra']['config']['listen_address'] = primary_ip
+node.default['cassandra']['config']['broadcast_address'] = primary_ip
+node.default['cassandra']['config']['broadcast_rpc_address'] = primary_ip
+node.default['cassandra']['config']['rpc_address'] = "0.0.0.0"
 
 cpus = node['cpu']['total']
 disks = node['cassandra']['data_dir'].count
 
-node.set['cassandra']['config']['concurrent_reads'] = disks * 16
-node.set['cassandra']['config']['concurrent_writes'] = cpus * 8
-node.set['cassandra']['config']['concurrent_compactors'] = cpus
+node.default['cassandra']['config']['concurrent_reads'] = disks * 16
+node.default['cassandra']['config']['concurrent_writes'] = cpus * 8
+node.default['cassandra']['config']['concurrent_compactors'] = cpus
 
-node.set['cassandra']['data_dir'] = ['/cassandra/data']
+node.default['cassandra']['data_dir'] = ['/cassandra/data']
 
 include_recipe 'cassandra-dse::default'
 
